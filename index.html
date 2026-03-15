@@ -37,4 +37,46 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generatore di Frasi</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 100px; background-color: #f0f0f0; }
+        #frase { font-size: 24px; font-weight: bold; color: #333; min-height: 50px; }
+        button { padding: 10px 20px; font-size: 18px; cursor: pointer; background: #007BFF; color: white; border: none; border-radius: 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <h1>La tua pillola di saggezza</h1>
+    <p id="frase">Clicca il tasto per una frase!</p>
+    <button onclick="nuovaFrase()">Dammi un consiglio</button>
+
+    <script>
+        // 1. Creiamo una lista (array) di frasi
+        const consigli = [
+            "Fai una cosa alla volta, ma falla bene.",
+            "Il miglior momento per iniziare era ieri. Il secondo è adesso.",
+            "Sbagliare è il primo passo per imparare.",
+            "Non fermarti quando sei stanco, fermati quando hai finito.",
+            "JavaScript è più facile di quanto sembri!",
+            "Bevi un bicchiere d'acqua, ti farà bene."
+        ];
+
+        function nuovaFrase() {
+            // 2. Scegliamo un indice a caso tra 0 e la lunghezza della lista
+            const indiceCasuale = Math.floor(Math.random() * consigli.length);
+            
+            // 3. Prendiamo la frase corrispondente
+            const fraseScelta = consigli[indiceCasuale];
+
+            // 4. La mostriamo nel paragrafo con id="frase"
+            document.getElementById("frase").innerText = fraseScelta;
+        }
+    </script>
+
+</body>
+</html>
 
