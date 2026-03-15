@@ -6,10 +6,50 @@
     <style>
         body { margin: 0; background: #000; overflow: hidden; }
         canvas { display: block; }
+        
+        .navbar {
+    display: flex;
+    justify-content: space-between; /* Spazia logo e link */
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none; /* Rimuove i pallini della lista */
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.nav-links a:hover {
+    color: #00d4ff; /* Cambia colore al passaggio del mouse */
+}
+
     </style>
 </head>
 <body>
+    <nav class="navbar">
+    <div class="logo">MioSito</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sfondo.html">Sfodo</a></li>
+        <li><a href=".html">bla</a></li>
+    </ul>
+</nav>
+
+    
     <canvas id="canvas"></canvas>
+
+
 
 <script>
     window.onload = function() {
