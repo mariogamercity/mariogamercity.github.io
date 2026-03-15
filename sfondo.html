@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambia Colore!</title>
+    <style>
+        body { text-align: center; padding-top: 50px; font-family: sans-serif; transition: background 0.5s; }
+        button { padding: 15px 30px; font-size: 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Cambia il colore dello sfondo</h1>
+    <button id="bottone">Cliccami!</button>
+
+    <script>
+        // 1. Selezioniamo il pulsante dall'HTML
+        const tasto = document.getElementById('bottone');
+
+        // 2. Creiamo una funzione per generare un colore casuale
+        function generaColoreCasuale() {
+            const lettere = '0123456789ABCDEF';
+            let colore = '#';
+            for (let i = 0; i < 6; i++) {
+                colore += lettere[Math.floor(Math.random() * 16)];
+            }
+            return colore;
+        }
+
+        // 3. Aggiungiamo un "ascoltatore" di eventi (il click)
+        tasto.addEventListener('click', function() {
+            const nuovoColore = generaColoreCasuale();
+            document.body.style.backgroundColor = nuovoColore;
+        });
+    </script>
+
+</body>
+</html>
