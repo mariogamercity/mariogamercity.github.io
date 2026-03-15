@@ -79,4 +79,130 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Orologio JS</title>
+    <style>
+        body { background: #222; color: #00ff00; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Courier New', Courier, monospace; margin: 0; }
+        #orologio { font-size: 80px; border: 5px solid #00ff00; padding: 20px; border-radius: 15px; box-shadow: 0 0 20px #00ff00; }
+    </style>
+</head>
+<body>
 
+    <div id="orologio">00:00:00</div>
+
+    <script>
+        function aggiornaOrologio() {
+            // 1. Otteniamo la data e l'ora attuale dal sistema
+            const oraAttuale = new Date();
+
+            // 2. Estraiamo ore, minuti e secondi
+            let h = oraAttuale.getHours();
+            let m = oraAttuale.getMinutes();
+            let s = oraAttuale.getSeconds();
+
+            // 3. Aggiungiamo uno "0" davanti se il numero è minore di 10 (es. 05 invece di 5)
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+            // 4. Costruiamo la stringa dell'ora
+            const tempoFormattato = h + ":" + m + ":" + s;
+
+            // 5. Inseriamo l'ora nell'elemento HTML
+            document.getElementById("orologio").innerText = tempoFormattato;
+        }
+
+        // 6. Diciamo a JavaScript di eseguire la funzione ogni 1000 millisecondi (1 secondo)
+        setInterval(aggiornaOrologio, 1000);
+
+        // Eseguiamo la funzione subito all'avvio per non aspettare il primo secondo
+        aggiornaOrologio();
+    </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Particelle Magiche</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #050505; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particelle = [];
+
+    // Crea una particella
+    class Particella {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 5 + 1;
+            this.speedX = Math.random() * 3 - 1.5;
+            this.speedY = Math.random() * 3 - 1.5;
+            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.size > 0.1) this.size -= 0.1;
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Gestione movimento mouse
+    window.addEventListener('mousemove', function(event) {
+        for (let i = 0; i < 5; i++) {
+            particelle.push(new Particella(event.x, event.y));
+        }
+    });
+
+    function anima() {
+        ctx.fillStyle = 'rgba(0,0,0,0.1)'; // Crea l'effetto "scia"
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = 0; i < particelle.length; i++) {
+            particelle[i].update();
+            particelle[i].draw();
+            
+            // Rimuove particelle troppo piccole
+            if (particelle[i].size <= 0.1) {
+                particelle.splice(i, 1);
+                i--;
+            }
+        }
+        requestAnimationFrame(anima); // Crea un loop fluido a 60fps
+    }
+
+    anima();
+
+    // Adatta il canvas se ridimensioni la finestra
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+
+</body>
+</html>
