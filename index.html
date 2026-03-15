@@ -80,51 +80,6 @@
 </body>
 </html>
 <!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Orologio JS</title>
-    <style>
-        body { background: #222; color: #00ff00; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Courier New', Courier, monospace; margin: 0; }
-        #orologio { font-size: 80px; border: 5px solid #00ff00; padding: 20px; border-radius: 15px; box-shadow: 0 0 20px #00ff00; }
-    </style>
-</head>
-<body>
-
-    <div id="orologio">00:00:00</div>
-
-    <script>
-        function aggiornaOrologio() {
-            // 1. Otteniamo la data e l'ora attuale dal sistema
-            const oraAttuale = new Date();
-
-            // 2. Estraiamo ore, minuti e secondi
-            let h = oraAttuale.getHours();
-            let m = oraAttuale.getMinutes();
-            let s = oraAttuale.getSeconds();
-
-            // 3. Aggiungiamo uno "0" davanti se il numero è minore di 10 (es. 05 invece di 5)
-            h = h < 10 ? "0" + h : h;
-            m = m < 10 ? "0" + m : m;
-            s = s < 10 ? "0" + s : s;
-
-            // 4. Costruiamo la stringa dell'ora
-            const tempoFormattato = h + ":" + m + ":" + s;
-
-            // 5. Inseriamo l'ora nell'elemento HTML
-            document.getElementById("orologio").innerText = tempoFormattato;
-        }
-
-        // 6. Diciamo a JavaScript di eseguire la funzione ogni 1000 millisecondi (1 secondo)
-        setInterval(aggiornaOrologio, 1000);
-
-        // Eseguiamo la funzione subito all'avvio per non aspettare il primo secondo
-        aggiornaOrologio();
-    </script>
-
-</body>
-</html>
-<!DOCTYPE html>
 <html>
 <head>
     <title>Particelle Magiche</title>
